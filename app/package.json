@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "niknak",
   "version": "1.0.0",
   "main": "src/index.tsx",
   "scripts": {
@@ -22,6 +22,7 @@
     "expo-av": "~15.0.2",
     "expo-blur": "~14.0.2",
     "expo-constants": "~17.0.4",
+    "expo-dev-client": "~5.0.9",
     "expo-font": "~13.0.3",
     "expo-haptics": "~14.0.1",
     "expo-linking": "~7.0.4",
