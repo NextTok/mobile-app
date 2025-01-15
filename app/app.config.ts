@@ -53,6 +53,8 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
       ? "54454ddb-a6e9-4cd0-826c-e957f1881a96"
       : "d9ae2efa-9de0-444b-906e-531b2224db38";
 
+  const icon = APP_ENV === "production" ? "./assets/images/icon.png" : "./assets/images/icon-dev.png"
+
   return {
     expo: {
       ...context,
@@ -61,7 +63,7 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
       slug,
       version: packageJson.version,
       orientation: "portrait",
-      icon: "./assets/images/icon.png",
+      icon: icon,
       scheme: "niknak",
       userInterfaceStyle: "light",
       newArchEnabled: true,
