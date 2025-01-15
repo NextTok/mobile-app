@@ -1,0 +1,60 @@
+{
+    "build": {
+      "development": {
+        "developmentClient": true,
+        "distribution": "internal",
+        "env": {
+          "APP_ENV": "development",
+          "APP_SERVER_URL": "https://api.nknk.app"
+        },
+        "channel": "development",
+        "android": {
+          "buildType": "apk",
+          "resourceClass": "large"
+        }
+      },
+      "development-simulator": {
+        "developmentClient": true,
+        "distribution": "internal",
+        "ios": {
+          "simulator": true
+        },
+        "env": {
+          "APP_ENV": "development"
+        },
+        "channel": "development",
+        "android": {
+          "buildType": "apk",
+          "resourceClass": "large"
+        }
+      },
+      "preview": {
+        "distribution": "internal",
+        "env": {
+          "APP_ENV": "development",
+          "APP_SERVER_URL": "https://api.nknk.app"
+        },
+        "channel": "preview",
+        "android": {
+          "buildType": "apk",
+          "resourceClass": "large"
+        }
+      },
+      "stage": {
+        "distribution": "store",
+        "env": {
+          "APP_ENV": "development",
+          "APP_SERVER_URL": "https://api.nknk.app"
+        },
+        "channel": "preview"
+      },
+      "production": {
+        "distribution": "store",
+        "env": {
+          "APP_ENV": "production",
+          "APP_SERVER_URL": "https://api.nknk.app"
+        },
+        "channel": "production"
+      }
+    }
+  }

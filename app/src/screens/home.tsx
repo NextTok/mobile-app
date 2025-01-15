@@ -1,4 +1,4 @@
-import { VideoFeed } from "@/components/data/VideoFeed";
+import { VideoFeed } from "@app/components/data/VideoFeed";
 import { useState } from "react";
 import { View } from "react-native";
 
