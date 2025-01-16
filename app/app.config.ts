@@ -76,7 +76,7 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
       updates: {
         enabled: true,
         url: `https://u.expo.dev/${projectId}`,
-        checkAutomatically: "ON_ERROR_RECOVERY",
+        checkAutomatically: "ON_LOAD",
       },
       assetBundlePatterns: ["**/*"],
       web: {
