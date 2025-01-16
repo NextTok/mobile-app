@@ -1,5 +1,6 @@
-import { ResizeMode, Video } from "expo-av";
-import { useEffect, useRef, useState } from "react";
+import { useEvent } from "expo";
+import { useVideoPlayer, VideoView } from "expo-video";
+import { useEffect } from "react";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
 
 interface VideoFeedItemProps {
@@ -8,37 +9,34 @@ interface VideoFeedItemProps {
 }
 
 export function VideoFeedItem({ shouldPlay, uri }: VideoFeedItemProps) {
-  const video = useRef<Video | null>(null);
-  const [status, setStatus] = useState<any>(null);
+  const player = useVideoPlayer(uri, player => {
+    player.loop = true;
+    player.play();
+  });
 
+  const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
+  
   useEffect(() => {
-    if (!video.current) return;
-
     if (shouldPlay) {
-      video.current.playAsync();
+      player.play();
     } else {
-      video.current.pauseAsync();
-      video.current.setPositionAsync(0);
+      player.pause();
+      player.currentTime = 0
     }
   }, [shouldPlay]);
 
   return (
     <Pressable
       onPress={() =>
-        status.isPlaying
-          ? video.current?.pauseAsync()
-          : video.current?.playAsync()
+        isPlaying
+          ? player.pause()
+          : player.play()
       }
     >
       <View style={styles.container}>
-        <Video
-          ref={video}
-          source={{ uri }}
+        <VideoView
           style={styles.video}
-          isLooping
-          resizeMode={ResizeMode.COVER}
-          useNativeControls={false}
-          onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+          player={player}
         />
       </View>
     </Pressable>

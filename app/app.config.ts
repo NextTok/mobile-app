@@ -139,6 +139,7 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
             backgroundColor: "#ffffff",
           },
         ],
+        ["expo-video", {}]
       ],
     },
   };
