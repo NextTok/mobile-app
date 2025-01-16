@@ -37,6 +37,8 @@ export function VideoFeedItem({ shouldPlay, uri }: VideoFeedItemProps) {
         <VideoView
           style={styles.video}
           player={player}
+          contentFit="cover"
+          nativeControls={false}
         />
       </View>
     </Pressable>

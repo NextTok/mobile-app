@@ -74,6 +74,7 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
       },
       platforms: ["ios", "android", "web"],
       updates: {
+        enabled: true,
         url: `https://u.expo.dev/${projectId}`,
         checkAutomatically: "ON_ERROR_RECOVERY",
       },

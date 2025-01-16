@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "update:preview": "APP_ENV=development APP_SERVER_URL=https://api.nknk.app eas update --branch preview --non-interactive --auto"
   },
   "jest": {
     "preset": "jest-expo"

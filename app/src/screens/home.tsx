@@ -14,7 +14,7 @@ export function HomeScreen() {
     const [dimensions, setDimensions] = useState(null);
     
   return (
-    <View style={{ flex: 1, backgroundColor: "red" }}>
+    <View style={{ flex: 1 }}>
       <VideoFeed videos={videos} />
     </View>
   );
