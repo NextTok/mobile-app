@@ -4626,6 +4626,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-contacts@npm:~14.0.3":
+  version: 14.0.3
+  resolution: "expo-contacts@npm:14.0.3"
+  peerDependencies:
+    expo: "*"
+    react-native: "*"
+  checksum: 10c0/f0d4523a3830c40d567a07dcdc0aeee07815fd92f4901c142eabd2dc1114e52855e802c9a18f1755189601dcf0802c502f89e386c23c1b6159dfa3a67d26205f
+  languageName: node
+  linkType: hard
+
 "expo-dev-client@npm:~5.0.9":
   version: 5.0.9
   resolution: "expo-dev-client@npm:5.0.9"
@@ -4765,6 +4775,16 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 10c0/8da5f097ce95bd5dfe091149fdcf4a81e9bd6d42d7734f570a711bb31ec71187f06db8711c905ab65f55c72e4a5822bf10fec0aa60389ecf0236592c6c530b7c
+  languageName: node
+  linkType: hard
+
+"expo-media-library@npm:~17.0.5":
+  version: 17.0.5
+  resolution: "expo-media-library@npm:17.0.5"
+  peerDependencies:
+    expo: "*"
+    react-native: "*"
+  checksum: 10c0/ad76535e45abe98e71384f07cde8530daea810ab22414b0d275409f36053327c28c983ee63fc106ab3fe03bd1af0250bcb47d4380d1d16bfb3771c76706e3cc5
   languageName: node
   linkType: hard
 
@@ -7783,11 +7803,13 @@ __metadata:
     expo: "npm:~52.0.25"
     expo-blur: "npm:~14.0.2"
     expo-constants: "npm:~17.0.4"
+    expo-contacts: "npm:~14.0.3"
     expo-dev-client: "npm:~5.0.9"
     expo-font: "npm:~13.0.3"
     expo-haptics: "npm:~14.0.1"
     expo-linear-gradient: "npm:~14.0.2"
     expo-linking: "npm:~7.0.4"
+    expo-media-library: "npm:~17.0.5"
     expo-router: "npm:~4.0.16"
     expo-splash-screen: "npm:~0.29.20"
     expo-status-bar: "npm:~2.0.1"
@@ -7806,6 +7828,7 @@ __metadata:
     react-native-reanimated: "npm:~3.16.1"
     react-native-safe-area-context: "npm:4.12.0"
     react-native-screens: "npm:~4.4.0"
+    react-native-videoeditorsdk: "npm:^3.3.0"
     react-native-web: "npm:~0.19.13"
     react-native-webview: "npm:13.12.5"
     react-test-renderer: "npm:18.3.1"
@@ -8660,6 +8683,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-imglysdk@npm:3.3.0":
+  version: 3.3.0
+  resolution: "react-native-imglysdk@npm:3.3.0"
+  checksum: 10c0/4e064974935dcc93e0720cc557f991bc544f793817dfd90e227038e144f50550efb96f978465da257c7bd488ee434592ba7ee2a14ba43068962cb874bedb7f56
+  languageName: node
+  linkType: hard
+
 "react-native-is-edge-to-edge@npm:^1.1.6":
   version: 1.1.6
   resolution: "react-native-is-edge-to-edge@npm:1.1.6"
@@ -8713,6 +8743,17 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/63eff2f7761109ed05b0656c28bf34c83d5d7ebbcd92931202a250cab0e54109c764fac3471db7ae52f5c6c782bfca5caf5d8f1dc9a4a27a4b9889aeec7a4dcc
+  languageName: node
+  linkType: hard
+
+"react-native-videoeditorsdk@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-videoeditorsdk@npm:3.3.0"
+  dependencies:
+    react-native-imglysdk: "npm:3.3.0"
+  peerDependencies:
+    react-native: ">=0.60.0 <1.0.x"
+  checksum: 10c0/b91838aa4790ab0fd98da4fffe56f4f59e130ad3dd96634c8d27adca7c34a3bf58517616a4ffa80d4bd7c6cc8d608bd1bfe1a457ca12bf31877c033d1a838f7c
   languageName: node
   linkType: hard
 

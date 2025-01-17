@@ -53,7 +53,10 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
       ? "54454ddb-a6e9-4cd0-826c-e957f1881a96"
       : "d9ae2efa-9de0-444b-906e-531b2224db38";
 
-  const icon = APP_ENV === "production" ? "./assets/images/icon.png" : "./assets/images/icon-dev.png"
+  const icon =
+    APP_ENV === "production"
+      ? "./assets/images/icon.png"
+      : "./assets/images/icon-dev.png";
 
   return {
     expo: {
@@ -140,7 +143,23 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
             backgroundColor: "#ffffff",
           },
         ],
-        ["expo-video", {}]
+        ["expo-video", {}],
+        [
+          "expo-contacts",
+          {
+            contactsPermission:
+              "Allow $(PRODUCT_NAME) to access your contacts.",
+          },
+        ],
+        [
+          "expo-media-library",
+          {
+            photosPermission: "Allow $(PRODUCT_NAME) to access your photos.",
+            savePhotosPermission: "Allow $(PRODUCT_NAME) to save photos.",
+            isAccessMediaLocationEnabled: true,
+          },
+        ],
+        ["react-native-imglysdk", {}]
       ],
     },
   };
