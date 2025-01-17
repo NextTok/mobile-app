@@ -25,6 +25,8 @@ export function VideoFeedItem({ shouldPlay, uri }: VideoFeedItemProps) {
     }
   }, [shouldPlay]);
 
+  console.log(player);
+
   return (
     <Pressable
       onPress={() =>
@@ -38,7 +40,7 @@ export function VideoFeedItem({ shouldPlay, uri }: VideoFeedItemProps) {
           style={styles.video}
           player={player}
           contentFit="cover"
-          nativeControls={false}
+          nativeControls={true}
         />
       </View>
     </Pressable>

@@ -1,0 +1,1 @@
+export { theme, Theme, useDemocraseeTheme } from './theme';
