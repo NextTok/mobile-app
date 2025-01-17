@@ -5,18 +5,7 @@ import styled from "styled-components/native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 
-type IoniconsName = React.ComponentProps<typeof Ionicons>["name"];
-
-const StyledIcon = styled(Ionicons)`
-  shadow-color: #000;
-  shadow-offset: {
-    width: 0px;
-    height: 0px;
-  }
-  shadow-opacity: 0.22;
-  shadow-radius: 5px;
-  elevation: 3;
-`;
+const IconShadow = styled(Flexbox)``;
 
 const Icon = ({
   counter,
@@ -24,9 +13,35 @@ const Icon = ({
 }: React.ComponentProps<typeof Ionicons> & { counter: string }) => {
   return (
     <Flexbox gap="xxSmall" alignItems="center">
-      <StyledIcon color={theme.color.white} {...restProps}  />
-
-      <Text style={{ color: theme.color.white, fontSize: 12 }}>{counter}</Text>
+      <IconShadow
+        style={{
+          shadowColor: "#000000",
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 2,
+          elevation: 3,
+        }}
+      >
+        <Ionicons color={theme.color.white} {...restProps} />
+      </IconShadow>
+      <Text
+        style={{
+          color: theme.color.white,
+          fontSize: 12,
+          textShadowColor: "rgba(0, 0, 0, 1)",
+          textShadowRadius: 4,
+          textShadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          paddingHorizontal: 10,
+        }}
+      >
+        {counter}
+      </Text>
     </Flexbox>
   );
 };
@@ -53,8 +68,18 @@ export const VideoFeedItemSidebar = () => {
         color={theme.color.white}
         counter="587"
       />
-      <Icon counter="2035" name="bookmark" size={30} color={theme.color.white} />
-      <Icon counter="4137" name="arrow-redo" size={30} color={theme.color.white} />
+      <Icon
+        counter="2035"
+        name="bookmark"
+        size={30}
+        color={theme.color.white}
+      />
+      <Icon
+        counter="4137"
+        name="arrow-redo"
+        size={30}
+        color={theme.color.white}
+      />
     </Flexbox>
   );
 };

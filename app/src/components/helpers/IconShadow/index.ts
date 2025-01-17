@@ -1,0 +1,1 @@
+export { IconShadow } from './IconShadow';
