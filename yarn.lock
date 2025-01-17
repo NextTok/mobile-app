@@ -2861,7 +2861,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.0, ajv@npm:^8.9.0":
+"ajv@npm:^8.0.0, ajv@npm:^8.11.0, ajv@npm:^8.9.0":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
@@ -4667,6 +4667,18 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/3138469957f73ed362ab4c483954b98d9740885904bdbeb5c43e159096f0c1c7532d8d14ed9625708a292126844b895a35687efb95ebcc2329435604612146f3
+  languageName: node
+  linkType: hard
+
+"expo-build-properties@npm:~0.13.2":
+  version: 0.13.2
+  resolution: "expo-build-properties@npm:0.13.2"
+  dependencies:
+    ajv: "npm:^8.11.0"
+    semver: "npm:^7.6.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/7df50514dda73dde8ca141047c850f7a1d2b42dd3d6822b5ae284c0854a592b23fece95b758b8acc40b4e5a50a7652e72f2dba0810f21284770d472d0ea692fb
   languageName: node
   linkType: hard
 
@@ -7909,6 +7921,7 @@ __metadata:
     babel-plugin-styled-components: "npm:^2.1.4"
     expo: "npm:~52.0.25"
     expo-blur: "npm:~14.0.2"
+    expo-build-properties: "npm:~0.13.2"
     expo-constants: "npm:~17.0.4"
     expo-contacts: "npm:~14.0.3"
     expo-dev-client: "npm:~5.0.9"
