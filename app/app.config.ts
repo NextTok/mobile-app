@@ -9,7 +9,6 @@ const {
   APP_SERVER_URL,
   DETOX_RUNNING,
   FORCE_INTRO,
-  STORIES_BETA = "false",
   APP_SERVER_PORT = "8000",
 } = process.env;
 
@@ -29,7 +28,6 @@ function getEnvVars() {
     APP_ENV,
     DETOX_RUNNING,
     FORCE_INTRO,
-    STORIES_BETA,
     APP_SERVER_PORT,
   };
 }
@@ -159,7 +157,9 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
             isAccessMediaLocationEnabled: true,
           },
         ],
-        ["react-native-imglysdk", {}]
+        ["react-native-imglysdk", {}],
+        ["expo-notifications", {}],
+        ["expo-secure-store", {}],
       ],
     },
   };

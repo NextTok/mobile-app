@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform, ViewStyle } from "react-native";
-import { HapticTab } from "@app/components/HapticTab";
+import { HapticTab } from "@app/components/helpers/HapticTab";
 import { useColorScheme } from "@app/hooks/useColorScheme";
 import { Ionicons } from "@expo/vector-icons";
 import Flexbox from "@app/components/layout/Flexbox";
