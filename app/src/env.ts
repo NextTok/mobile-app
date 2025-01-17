@@ -17,6 +17,7 @@ export const APP_ENV = getEnvVar("APP_ENV") as string;
 export const DETOX_RUNNING = getEnvVar("DETOX_RUNNING") as string;
 export const FORCE_INTRO = getEnvVar("FORCE_INTRO") as string;
 export const APP_SERVER_PORT = getEnvVar("APP_SERVER_PORT") as string;
+export const IMGLY_API_KEY = getEnvVar("IMGLY_API_KEY") as string;
 
 
 const env = {
@@ -24,7 +25,8 @@ const env = {
   APP_ENV,
   DETOX_RUNNING: DETOX_RUNNING === "true" && APP_ENV === "development",
   FORCE_INTRO: FORCE_INTRO === "true" && APP_ENV === "development",
-  APP_SERVER_PORT
+  APP_SERVER_PORT,
+  IMGLY_API_KEY
 };
 
 export default env;

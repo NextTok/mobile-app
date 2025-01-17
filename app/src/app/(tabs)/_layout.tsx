@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import React from "react";
 import { Platform, ViewStyle } from "react-native";
 import { HapticTab } from "@app/components/helpers/HapticTab";
@@ -10,18 +10,16 @@ import { theme } from "@app/theme";
 const TabIcon = (props: React.ComponentProps<typeof Ionicons>) => {
   return (
     <Flexbox
-      style={
-        {
-          shadowColor: "#000000",
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowOpacity: 0.6,
-          shadowRadius: 2,
-          elevation: 3,
-        }
-      }
+      style={{
+        shadowColor: "#000000",
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 2,
+        elevation: 3,
+      }}
     >
       <Ionicons {...props} />
     </Flexbox>
@@ -89,12 +87,21 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="create"
+        listeners={({ navigation }) => {
+          return {
+            tabPress: (e) => {
+              e.preventDefault();
+              router.push("/editor")
+            },
+          };
+        }}
         options={{
+          headerShown: false,
           title: "",
           tabBarIconStyle: {
             position: "relative",
           },
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: () => (
             <Flexbox
               width={40}
               height={40}

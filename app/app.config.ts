@@ -10,6 +10,7 @@ const {
   DETOX_RUNNING,
   FORCE_INTRO,
   APP_SERVER_PORT = "8000",
+  IMGLY_API_KEY
 } = process.env;
 
 function getAppServerUrl() {
@@ -29,6 +30,7 @@ function getEnvVars() {
     DETOX_RUNNING,
     FORCE_INTRO,
     APP_SERVER_PORT,
+    IMGLY_API_KEY
   };
 }
 
@@ -91,6 +93,12 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
         // googleServicesFile:
         //   process.env.GOOGLE_SERVICES_FILE || "./GoogleService-Info.plist",
         // associatedDomains: ["applinks:nknk.app"],
+        infoPlist: {
+          NSCameraUsageDescription:
+            "This app uses the camera for demonstration purposes.",
+          NSMicrophoneUsageDescription:
+            "This app uses the camera for demonstration purposes.",
+        },
       },
       android: {
         package: androidPackage,
@@ -157,9 +165,41 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
             isAccessMediaLocationEnabled: true,
           },
         ],
-        ["react-native-imglysdk", {}],
+        [
+          "react-native-imglysdk",
+          {
+            android: {
+              version: "10.9.0",
+              kspVersion: "1.8.0-1.0.9",
+              modules: [
+                "ui:core",
+                "ui:transform",
+                "ui:filter",
+                "assets:filter-basic",
+              ],
+              buildToolsVersion: "34.0.0",
+              minSdkVersion: "21",
+              compileSdkVersion: "34",
+              targetSdkVersion: "34",
+              kotlinGradlePluginVersion: "1.8.0",
+            },
+          },
+        ],
         ["expo-notifications", {}],
         ["expo-secure-store", {}],
+        [
+          "expo-build-properties",
+          {
+            android: {
+              extraMavenRepos: ["https://artifactory.img.ly/artifactory/maven"],
+              minSdkVersion: 24,
+              kotlinVersion: "1.9.10",
+            },
+            ios: {
+              deploymentTarget: "16.0",
+            },
+          },
+        ],
       ],
     },
   };

@@ -1600,6 +1600,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@imgly/camera-react-native@npm:^1.41.1":
+  version: 1.41.1
+  resolution: "@imgly/camera-react-native@npm:1.41.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/da3dc1af8a9f3ab915e343acbce2d471e85c0a52e4b2ca5616bc0244d10e5a97906ebccc88fad7a4a31390c6f7a8c094ecd3c611fc37cfc8e5d6fbaea9d50b5c
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -7888,6 +7898,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.25.2"
     "@expo/vector-icons": "npm:^14.0.2"
+    "@imgly/camera-react-native": "npm:^1.41.1"
     "@react-navigation/bottom-tabs": "npm:^7.2.0"
     "@react-navigation/native": "npm:^7.0.14"
     "@types/ip": "npm:^1.1.3"

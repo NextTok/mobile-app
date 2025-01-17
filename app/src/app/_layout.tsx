@@ -38,6 +38,10 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <StyledThemeProvider theme={theme}>
         <Stack>
+          <Stack.Screen
+            name="editor"
+            options={{ headerShown: false, presentation: 'modal' }}
+          />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
