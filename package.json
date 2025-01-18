@@ -4,5 +4,8 @@
     "app"
   ],
   "private": true,
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.6.0",
+  "scripts": {
+    "start": "ts-node src/uindex.ts"
+  }
 }

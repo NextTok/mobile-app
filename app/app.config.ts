@@ -165,41 +165,16 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
             isAccessMediaLocationEnabled: true,
           },
         ],
-        [
-          "react-native-imglysdk",
-          {
-            android: {
-              version: "10.9.0",
-              kspVersion: "1.8.0-1.0.9",
-              modules: [
-                "ui:core",
-                "ui:transform",
-                "ui:filter",
-                "assets:filter-basic",
-              ],
-              buildToolsVersion: "34.0.0",
-              minSdkVersion: "21",
-              compileSdkVersion: "34",
-              targetSdkVersion: "34",
-              kotlinGradlePluginVersion: "1.8.0",
-            },
-          },
-        ],
         ["expo-notifications", {}],
         ["expo-secure-store", {}],
         [
-          "expo-build-properties",
+          "expo-camera",
           {
-            android: {
-              extraMavenRepos: ["https://artifactory.img.ly/artifactory/maven"],
-              minSdkVersion: 24,
-              kotlinVersion: "1.9.10",
-            },
-            ios: {
-              deploymentTarget: "16.0",
-            },
-          },
-        ],
+            "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+            "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+            "recordAudioAndroid": true
+          }
+        ]
       ],
     },
   };
