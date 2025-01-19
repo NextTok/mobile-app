@@ -23,6 +23,12 @@ export const FlexboxView = styled.View<FlexboxProperties>`
     maxWidth,
     margin,
     justifySelf,
+    position,
+    top,
+    left,
+    bottom,
+    right,
+    backgroundColor
   }) => `
         ${createStyleProp("padding-top", paddingVertical)}
         ${createStyleProp("padding-bottom", paddingVertical)}
@@ -45,5 +51,11 @@ export const FlexboxView = styled.View<FlexboxProperties>`
         ${createStyleProp("margin", margin)}
         ${createStyleProp("max-height", maxHeight)}
         ${createStyleProp("max-width", maxWidth)}
+        ${createStyleProp("position", position)}
+        ${createStyleProp("top", top)}
+        ${createStyleProp("left", left)}
+        ${createStyleProp("bottom", bottom)}
+        ${createStyleProp("right", right)}
+        ${createStyleProp("background-color", backgroundColor)}
     `}
 `;

@@ -50,6 +50,7 @@ export function VideoFeedItem({ shouldPlay, uri }: VideoFeedItemProps) {
           player={player}
           contentFit="cover"
           nativeControls={false}
+          allowsPictureInPicture={false}
         />
         <Flexbox
           style={{ position: "absolute", top: 0, right: 0, zIndex: 1 }}

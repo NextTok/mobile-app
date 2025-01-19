@@ -21,6 +21,12 @@ export type FlexboxProperties = Pick<
   | "maxWidth"
   | "margin"
   | "justifySelf"
+  | "position"
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "backgroundColor"
 > & {
     paddingVertical?: string | number;
     paddingHorizontal?: string | number;

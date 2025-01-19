@@ -1,9 +1,5 @@
-import Flexbox from "@app/components/layout/Flexbox";
-import { Text, View } from "react-native";
+import { EditorScreen } from "@app/screens/editor/editor";
 
 export default function Editor() {
-  return (
-    <Flexbox flex={1}>
-  </Flexbox>
-  );
+  return <EditorScreen/>
 }
