@@ -29,3 +29,14 @@ export const RecordButtonInner = styled.Pressable<{ mode: "photo" | "video" }>`
     border-radius: 32px;
     background-color: ${({ theme, mode }) => mode === "video" ? theme.color.red.primary : theme.color.white};
 `;
+
+export const RecordingButton = styled.Pressable`
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    border-color: ${({ theme }) => theme.color.red.primary};
+    border-width: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;

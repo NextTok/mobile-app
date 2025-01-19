@@ -7,7 +7,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { theme } from "@app/theme";
 import { useState } from "react";
 import { router } from "expo-router";
-import { useCameraRecord } from "@app/hooks/useCameraRecord";
+import {
+  useCameraRecord,
+  UseCameraRecordResult,
+} from "@app/hooks/useCameraRecord";
 import { CameraRecordingOptions } from "./components/RecordingOptions";
 
 const CameraHeader = () => {
@@ -69,9 +72,31 @@ const CameraToolbar = ({
   );
 };
 
-const CameraFooter = ({ mode }: { mode: "photo" | "video" }) => {
+const CameraFooter = ({
+  mode,
+  startRecording,
+  isRecording,
+  stopRecording
+}: { mode: "photo" | "video" } & UseCameraRecordResult) => {
+  if (isRecording) {
+    return (
+      <Styled.RecordingButton onPress={() => {
+        if (mode === "video") {
+          stopRecording();
+        }
+      }}>
+
+      </Styled.RecordingButton>
+    )
+  }
   return (
-    <Styled.RecordButton>
+    <Styled.RecordButton
+      onPress={() => {
+        if (mode === "video") {
+          startRecording();
+        }
+      }}
+    >
       <Styled.RecordButtonInner mode={mode} />
     </Styled.RecordButton>
   );
@@ -92,9 +117,9 @@ export function EditorScreen() {
 
   const [mode, setMode] = useState<"photo" | "video">("video");
 
-  const { cameraRef, isRecording } = useCameraRecord({
+  const cameraRecorder = useCameraRecord({
     initialMaxDuration: 15,
-    flash
+    flash,
   });
 
   if (!hasPermission) {
@@ -113,8 +138,10 @@ export function EditorScreen() {
           {device && (
             <Styled.CameraView
               device={device}
-              ref={cameraRef}
-              isActive={isRecording}
+              ref={cameraRecorder.cameraRef}
+              isActive={true}
+              video={mode === "video"}
+              photo={mode === "photo"}
             />
           )}
 
@@ -145,7 +172,7 @@ export function EditorScreen() {
             <CameraRecordingOptions
               onChange={(mode) => setMode(mode === "photo" ? "photo" : "video")}
             />
-            <CameraFooter mode={mode} />
+            <CameraFooter mode={mode} {...cameraRecorder} />
           </Flexbox>
         </Flexbox>
       </SafeAreaView>

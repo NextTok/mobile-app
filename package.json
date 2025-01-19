@@ -6,6 +6,7 @@
   "private": true,
   "packageManager": "yarn@4.6.0",
   "scripts": {
-    "start": "ts-node src/uindex.ts"
+    "start": "cd app && yarn start",
+    "install:simulator": "chmod +x scripts/install_simulator_app.sh && sh scripts/install_simulator_app.sh"
   }
 }

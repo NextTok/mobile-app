@@ -1,7 +1,7 @@
 import {  CameraDevice, CameraPosition, useCameraDevice, useCameraPermission } from 'react-native-vision-camera';
 import { useState } from 'react';
 
-type FlashMode = "off" | "on";
+export type FlashMode = "off" | "on";
 
 type UseCameraOptions = {
     initialCameraType: CameraPosition
