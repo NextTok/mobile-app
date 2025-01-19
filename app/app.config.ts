@@ -168,11 +168,11 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
         ["expo-notifications", {}],
         ["expo-secure-store", {}],
         [
-          "expo-camera",
+          "react-native-vision-camera",
           {
-            "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
-            "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
-            "recordAudioAndroid": true
+            "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+            "enableMicrophonePermission": true,
+            "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
           }
         ]
       ],

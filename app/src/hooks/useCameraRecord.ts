@@ -1,15 +1,16 @@
-import { CameraView } from "expo-camera";
 import { useRef, useState } from "react";
+import { Camera, VideoFile } from "react-native-vision-camera";
 
 type UseCameraRecordOptions = {
     initialMaxDuration?: number;
+    flash?: "on" | "off"
 }
 
-export function useCameraRecord({ initialMaxDuration = 15 }: UseCameraRecordOptions) {
+export function useCameraRecord({ initialMaxDuration = 15, flash = "off" }: UseCameraRecordOptions) {
     const [isRecording, setIsRecording] = useState(false);
     const [maxDuration, setMaxDuration] = useState(initialMaxDuration);
-    const cameraRef = useRef<CameraView>(null);
-    const [video, setVideo] = useState<string | null>(null);
+    const cameraRef = useRef<Camera>(null);
+    const [video, setVideo] = useState<VideoFile | null>(null);
     const [error, setError] = useState<Error | null>(null);
 
     const startRecording = async () => {
@@ -17,11 +18,15 @@ export function useCameraRecord({ initialMaxDuration = 15 }: UseCameraRecordOpti
             try {
                 setIsRecording(true);
 
-                const video = await cameraRef.current.recordAsync({
-                    maxDuration: maxDuration
+                const video = await new Promise<VideoFile>((resolve, reject) => {
+                    cameraRef.current?.startRecording({
+                        onRecordingFinished: resolve,
+                        onRecordingError: reject,
+                        flash
+                    })
                 });
 
-                setVideo(video?.uri ?? null);
+                setVideo(video);
 
             } catch (error) {
                 setError(error as Error);

@@ -1,8 +1,8 @@
-import { CameraView as ExpoCameraView } from "expo-camera";
 import styled from "styled-components/native";
 import RNPagerView from 'react-native-pager-view';
+import { Camera } from "react-native-vision-camera";
 
-export const CameraView = styled(ExpoCameraView)`
+export const CameraView = styled(Camera)`
     flex: 1;
 `;
 

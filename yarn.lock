@@ -4672,23 +4672,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-camera@npm:~16.0.11":
-  version: 16.0.11
-  resolution: "expo-camera@npm:16.0.11"
-  dependencies:
-    invariant: "npm:^2.2.4"
-  peerDependencies:
-    expo: "*"
-    react: "*"
-    react-native: "*"
-    react-native-web: "*"
-  peerDependenciesMeta:
-    react-native-web:
-      optional: true
-  checksum: 10c0/51b891ed31fdcc85a54e034d0315c51d2b0b32cbb6b98276c7f124cd62625d8d378931f135b198b6511906f25fed78dd1159dc2566be2cf1805eaea9b9989784
-  languageName: node
-  linkType: hard
-
 "expo-constants@npm:~17.0.4":
   version: 17.0.4
   resolution: "expo-constants@npm:17.0.4"
@@ -7928,7 +7911,6 @@ __metadata:
     expo: "npm:~52.0.25"
     expo-blur: "npm:~14.0.2"
     expo-build-properties: "npm:~0.13.2"
-    expo-camera: "npm:~16.0.11"
     expo-constants: "npm:~17.0.4"
     expo-contacts: "npm:~14.0.3"
     expo-dev-client: "npm:~5.0.9"
@@ -7960,8 +7942,10 @@ __metadata:
     react-native-safe-area-context: "npm:4.12.0"
     react-native-screens: "npm:~4.4.0"
     react-native-tab-view: "npm:^4.0.5"
+    react-native-vision-camera: "npm:^4.6.3"
     react-native-web: "npm:~0.19.13"
     react-native-webview: "npm:13.12.5"
+    react-native-worklets-core: "npm:^1.5.0"
     react-test-renderer: "npm:18.3.1"
     styled-components: "npm:6.1.12"
     typescript: "npm:^5.3.3"
@@ -8924,6 +8908,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-vision-camera@npm:^4.6.3":
+  version: 4.6.3
+  resolution: "react-native-vision-camera@npm:4.6.3"
+  peerDependencies:
+    "@shopify/react-native-skia": "*"
+    react: "*"
+    react-native: "*"
+    react-native-reanimated: "*"
+    react-native-worklets-core: "*"
+  peerDependenciesMeta:
+    "@shopify/react-native-skia":
+      optional: true
+    react-native-reanimated:
+      optional: true
+    react-native-worklets-core:
+      optional: true
+  checksum: 10c0/d086a2e48dd7a390d4515bdfcf24dd95a25ec8591296aaba9c78ce46e985c27703972d2cf4c153d99cc6e955b38e1a9f074da2490ed4ce1a8767a5b2cf08c2ed
+  languageName: node
+  linkType: hard
+
 "react-native-web@npm:~0.19.13":
   version: 0.19.13
   resolution: "react-native-web@npm:0.19.13"
@@ -8953,6 +8957,18 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/c738e622fa29837e0715e0632c8b8dafd3086bcef115353b0fab23d94169a789cefa7f7980206278612927f2fe236488eebf34795a6aa49a812a179e36c85d2c
+  languageName: node
+  linkType: hard
+
+"react-native-worklets-core@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "react-native-worklets-core@npm:1.5.0"
+  dependencies:
+    string-hash-64: "npm:^1.0.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/30cfbbe7606619f555e6897f39a068f25f0710d3c7541e4579510aa7ce90fe58d7eb4c344e7c59556cd7ceaddce1d681e99e0a5e24da6b7c1fe3d47bb346562a
   languageName: node
   linkType: hard
 
@@ -9923,6 +9939,13 @@ __metadata:
   version: 2.0.0
   resolution: "strict-uri-encode@npm:2.0.0"
   checksum: 10c0/010cbc78da0e2cf833b0f5dc769e21ae74cdc5d5f5bd555f14a4a4876c8ad2c85ab8b5bdf9a722dc71a11dcd3184085e1c3c0bd50ec6bb85fffc0f28cf82597d
+  languageName: node
+  linkType: hard
+
+"string-hash-64@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "string-hash-64@npm:1.0.3"
+  checksum: 10c0/ac175f71b383af1487ab16b4cc1b42b5302bea08bdf1cc1ea04bacb293fb9b35afc6c58260e1fc728627e7265519da01976822a188d493d7e7625b9628173ea3
   languageName: node
   linkType: hard
 

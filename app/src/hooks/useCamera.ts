@@ -1,30 +1,37 @@
-import { CameraView, CameraType, useCameraPermissions, FlashMode, PermissionResponse } from 'expo-camera';
+import {  CameraDevice, CameraPosition, useCameraDevice, useCameraPermission } from 'react-native-vision-camera';
 import { useState } from 'react';
 
+type FlashMode = "off" | "on";
+
 type UseCameraOptions = {
-    initialCameraType: CameraType
+    initialCameraType: CameraPosition
 }
 
 export type UseCameraResult = {
     hasPermission: boolean;
-    cameraType: CameraType;
-    setCameraType: React.Dispatch<React.SetStateAction<CameraType>>;
-    requestPermission: () => Promise<PermissionResponse>;
+    cameraType: CameraPosition;
+    setCameraType: React.Dispatch<React.SetStateAction<CameraPosition>>;
+    requestPermission: () => Promise<boolean>;
     flash: FlashMode;
     setFlash: React.Dispatch<React.SetStateAction<FlashMode>>;
+    device?: CameraDevice
 }
 
 export function useCamera({ initialCameraType }: UseCameraOptions): UseCameraResult {
-    const [cameraType, setCameraType] = useState<CameraType>(initialCameraType);
-    const [permission, requestPermission] = useCameraPermissions();
+
+    const [cameraType, setCameraType] = useState<CameraPosition>(initialCameraType);
+    const device = useCameraDevice(cameraType)
+    const { hasPermission, requestPermission } = useCameraPermission()
+
     const [flash, setFlash] = useState<FlashMode>("off");
 
     return {
-        hasPermission: (permission && permission.granted) ?? false,
+        hasPermission,
         cameraType,
         setCameraType,
         requestPermission,
         flash,
-        setFlash
+        setFlash,
+        device
     }
 }

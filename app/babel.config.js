@@ -23,6 +23,7 @@ const plugins = [
       preprocess: false, // Enables preprocessing
     },
   ],
+  ['react-native-worklets-core/plugin']
 ]
 
 const presets = ['babel-preset-expo'];

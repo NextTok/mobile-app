@@ -1,6 +1,5 @@
 import Flexbox from "@app/components/layout/Flexbox";
 import { useCamera, UseCameraResult } from "@app/hooks/useCamera";
-import { Camera, CameraView } from "expo-camera";
 import { Button, Text } from "react-native";
 import * as Styled from "./editor.styled";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -86,6 +85,7 @@ export function EditorScreen() {
     flash,
     setCameraType,
     setFlash,
+    device,
   } = useCamera({
     initialCameraType: "front",
   });
@@ -94,6 +94,7 @@ export function EditorScreen() {
 
   const { cameraRef, isRecording } = useCameraRecord({
     initialMaxDuration: 15,
+    flash
   });
 
   if (!hasPermission) {
@@ -109,11 +110,13 @@ export function EditorScreen() {
     <Flexbox flex={1} backgroundColor="#000000">
       <SafeAreaView style={{ flex: 1 }}>
         <Flexbox flex={1} position="relative">
-          <Styled.CameraView
-            facing={cameraType}
-            ref={cameraRef}
-            flash={flash}
-          />
+          {device && (
+            <Styled.CameraView
+              device={device}
+              ref={cameraRef}
+              isActive={isRecording}
+            />
+          )}
 
           <Flexbox
             flexDirection="row"

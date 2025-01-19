@@ -34,6 +34,7 @@ export const CameraRecordingOptions = ({ onChange }: CameraRecordingProps) => {
   const [centerIndicatorLayout, setCenterIndicatorLayout] =
     useState<LayoutRectangle | null>(null);
 
+
   const handleIndexChange = (newIndex: number, duration = 500) => {
     setIndex(newIndex);
 
