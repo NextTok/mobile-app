@@ -14,9 +14,13 @@ const routes = [
   { key: "30s", title: "30s" },
   { key: "15s", title: "15s" },
   { key: "photo", title: "Photo" },
-];
+] as const;
 
-export const CameraRecordingOptions = () => {
+type CameraRecordingProps = {
+  onChange: (mode: "60s" | "30s" | "15s" | "photo") => void;
+};
+
+export const CameraRecordingOptions = ({ onChange }: CameraRecordingProps) => {
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(3);
 
@@ -77,6 +81,10 @@ export const CameraRecordingOptions = () => {
     }
   }, [tabWidths, allWidthsPopulated]);
 
+  useEffect(() => {
+    onChange(routes[index].key);
+  }, [index]);
+
   return (
     <Flexbox
       flex={1}
@@ -90,7 +98,7 @@ export const CameraRecordingOptions = () => {
           <Animated.View
             style={[
               {
-                height: 17,
+                height: 19,
                 width: 100,
                 backgroundColor: theme.color.white,
               },
@@ -127,13 +135,16 @@ export const CameraRecordingOptions = () => {
               style={[
                 {
                   color: theme.color.white,
-                  paddingHorizontal: theme.space.xSmall,
+                  paddingHorizontal: theme.space.small,
                   borderRadius: theme.borderRadius.pill,
+                  fontWeight: "500",
+                  fontSize: 16,
                 },
                 index === i && {
                   color: "#000000",
                 },
               ]}
+              suppressHighlighting
             >
               {route.title ?? ""}
             </Text>

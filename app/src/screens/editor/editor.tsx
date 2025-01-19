@@ -1,10 +1,7 @@
 import Flexbox from "@app/components/layout/Flexbox";
 import { useCamera, UseCameraResult } from "@app/hooks/useCamera";
 import { Camera, CameraView } from "expo-camera";
-import {
-  Button,
-  Text,
-} from "react-native";
+import { Button, Text } from "react-native";
 import * as Styled from "./editor.styled";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -142,7 +139,9 @@ export function EditorScreen() {
             alignItems="center"
             gap="medium"
           >
-            <CameraRecordingOptions />
+            <CameraRecordingOptions
+              onChange={(mode) => setMode(mode === "photo" ? "photo" : "video")}
+            />
             <CameraFooter mode={mode} />
           </Flexbox>
         </Flexbox>
