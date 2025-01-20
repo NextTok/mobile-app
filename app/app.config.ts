@@ -10,7 +10,7 @@ const {
   DETOX_RUNNING,
   FORCE_INTRO,
   APP_SERVER_PORT = "8000",
-  IMGLY_API_KEY
+  IMGLY_API_KEY,
 } = process.env;
 
 function getAppServerUrl() {
@@ -30,7 +30,7 @@ function getEnvVars() {
     DETOX_RUNNING,
     FORCE_INTRO,
     APP_SERVER_PORT,
-    IMGLY_API_KEY
+    IMGLY_API_KEY,
   };
 }
 
@@ -170,11 +170,25 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
         [
           "react-native-vision-camera",
           {
-            "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
-            "enableMicrophonePermission": true,
-            "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
-          }
-        ]
+            cameraPermissionText:
+              "$(PRODUCT_NAME) needs access to your Camera.",
+            enableMicrophonePermission: true,
+            microphonePermissionText:
+              "$(PRODUCT_NAME) needs access to your Microphone.",
+          },
+        ],
+        [
+          "expo-speech-recognition",
+          {
+            microphonePermission:
+              "Allow $(PRODUCT_NAME) to use the microphone.",
+            speechRecognitionPermission:
+              "Allow $(PRODUCT_NAME) to use speech recognition.",
+            androidSpeechServicePackages: [
+              "com.google.android.googlequicksearchbox",
+            ],
+          },
+        ],
       ],
     },
   };
