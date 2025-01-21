@@ -5,6 +5,7 @@ import type { FlashMode } from "./useCamera";
 type UseCameraRecordOptions = {
   initialMaxDuration?: number;
   flash?: FlashMode;
+  onEnd?: (video: VideoFile) => void;
 };
 
 export type UseCameraRecordResult = {
@@ -16,11 +17,13 @@ export type UseCameraRecordResult = {
     maxDuration: number;
     error: Error | null;
     cameraRef: React.RefObject<Camera>;
+    
 }
 
 export function useCameraRecord({
   initialMaxDuration = 15,
   flash = "off",
+  onEnd
 }: UseCameraRecordOptions): UseCameraRecordResult {
   const [isRecording, setIsRecording] = useState(false);
   const [maxDuration, setMaxDuration] = useState(initialMaxDuration);
@@ -46,6 +49,8 @@ export function useCameraRecord({
         }, maxDuration * 1000);
 
         setVideo(video);
+
+        if (onEnd) onEnd(video);
 
         return video;
       } catch (error) {

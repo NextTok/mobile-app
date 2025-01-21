@@ -195,6 +195,12 @@ function getFinalConfig(context: ConfigContext): { expo: ExpoConfig } {
             "photosPermission": "The app accesses your photos to let you share them with your friends."
           }
         ],
+        [
+          "expo-audio",
+          {
+            "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+          }
+        ]
       ],
     },
   };

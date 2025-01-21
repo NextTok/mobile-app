@@ -151,18 +151,22 @@ export function EditorScreen() {
 
   const [mode, setMode] = useState<"photo" | "video">("video");
 
-  const cameraRecorder = useCameraRecord({
-    initialMaxDuration: 15,
-    flash,
-  });
+  const waveformRef = useRef<IWaveformRef | null>(null);
 
   const player = useVideoPlayer(image, (player) => {
     player.loop = true;
     player.timeUpdateEventInterval = 1 / 30;
-    // player.volume = 0;
+    player.volume = 0;
   });
 
-  const ref = useRef<IWaveformRef | null>(null);
+
+  const cameraRecorder = useCameraRecord({
+    initialMaxDuration: 15,
+    flash,
+    onEnd: (video) => {
+      setImage(`file://${video.path}`)
+    }
+  });
 
   const { transcribe, transcription, recognizing } = useAudioTranscriber({
     onEnd: () => {
@@ -178,7 +182,7 @@ export function EditorScreen() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["videos"],
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [9, 16],
       quality: 1,
     });
 
@@ -189,9 +193,9 @@ export function EditorScreen() {
 
   useEventListener(player, "playingChange", (payload) => {
     if (payload.isPlaying) {
-      ref.current?.startPlayer({ finishMode: FinishMode.loop });
+      waveformRef.current?.startPlayer({ finishMode: FinishMode.loop });
     } else {
-      ref.current?.stopPlayer();
+      waveformRef.current?.stopPlayer();
     }
   });
 
@@ -202,6 +206,7 @@ export function EditorScreen() {
           const { output_file } = await ExpoVideoToAudio.extractAudio({
             videoPath: image,
           });
+          
           setAudio(output_file);
           transcribe(output_file);
         } catch (error) {
@@ -308,6 +313,7 @@ export function EditorScreen() {
               onPanStateChange={(isMoving) => console.log(isMoving)}
               containerStyle={{ width: "100%" }}
               ref={ref}
+              
             />
           )} */}
           <CameraFooter mode={mode} {...cameraRecorder} pickImage={pickImage} />
