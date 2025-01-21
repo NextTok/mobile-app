@@ -1,8 +1,13 @@
 import styled from "styled-components/native";
 import RNPagerView from 'react-native-pager-view';
 import { Camera } from "react-native-vision-camera";
+import { VideoView as ExpoVideoView } from "expo-video";
 
 export const CameraView = styled(Camera)`
+    flex: 1;
+`;
+
+export const VideoView = styled(ExpoVideoView)`
     flex: 1;
 `;
 
