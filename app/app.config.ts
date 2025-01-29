@@ -9,7 +9,7 @@ const {
   APP_SERVER_URL,
   DETOX_RUNNING,
   FORCE_INTRO,
-  APP_SERVER_PORT = "8000",
+  APP_SERVER_PORT = "8083",
   IMGLY_API_KEY,
 } = process.env;
 

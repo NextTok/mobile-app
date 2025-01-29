@@ -21,7 +21,7 @@ export const IMGLY_API_KEY = getEnvVar("IMGLY_API_KEY") as string;
 
 
 const env = {
-  APP_SERVER_URL: APP_ENV === "development" && Platform.OS === "web" ? `http://localhost:${APP_SERVER_PORT ?? "8000"}` : APP_SERVER_URL,
+  APP_SERVER_URL: APP_ENV === "development" && Platform.OS === "web" ? `http://localhost:${APP_SERVER_PORT ?? "8083"}` : APP_SERVER_URL,
   APP_ENV,
   DETOX_RUNNING: DETOX_RUNNING === "true" && APP_ENV === "development",
   FORCE_INTRO: FORCE_INTRO === "true" && APP_ENV === "development",

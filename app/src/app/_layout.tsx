@@ -15,6 +15,8 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@app/hooks/useColorScheme";
 import { theme } from "@app/theme";
+import { ReactQueryProvider } from "@app/providers/ReactQueryProvider";
+import { AuthProvider } from "@app/providers/AuthProvider";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,18 +37,21 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <StyledThemeProvider theme={theme}>
-        <Stack>
-          <Stack.Screen
-            name="editor"
-            options={{ headerShown: false, presentation: 'modal' }}
-          />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </StyledThemeProvider>
-    </ThemeProvider>
+    <ReactQueryProvider>
+      <AuthProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <StyledThemeProvider theme={theme}>
+            <Stack initialRouteName="sign-in">
+              <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+              <Stack.Screen name="(app)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+            <StatusBar style="auto" />
+          </StyledThemeProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </ReactQueryProvider>
   );
 }
