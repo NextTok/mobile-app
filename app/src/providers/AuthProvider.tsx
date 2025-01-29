@@ -5,19 +5,21 @@ import {
   createContext,
   type PropsWithChildren,
   useCallback,
+  useEffect,
 } from "react";
-import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
-import env from "@app/env";
 import { router } from "expo-router";
+import { useLogout } from "@app/react-query/mutations/useLogout";
+import { useProfile } from "@app/react-query/queries/useProfile";
 
 WebBrowser.maybeCompleteAuthSession();
 
 type AuthContextValue = {
   signIn: (handle: string) => Promise<void>;
   signOut: () => void;
-  session?: string | null;
+  did?: string | null;
   isLoading: boolean;
+  profile: {} | null;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -33,53 +35,72 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const [[isLoading, session], setSession] = useStorageState("session");
+  const [[isLoading, did], setDid] = useStorageState("did");
 
-  const { mutateAsync } = useLogin();
+  const { mutateAsync: login } = useLogin();
+  const { mutateAsync: logout } = useLogout();
+  const { refetch: getProfile, data: profile } = useProfile();
 
   const signIn = useCallback(
     async (handle: string) => {
       try {
-        const { url } = await mutateAsync({ handle });
+        const { url } = await login({ handle });
 
-        const result = await WebBrowser.openAuthSessionAsync(
-          url,
-        );
+        const result = await WebBrowser.openAuthSessionAsync(url);
 
         if (result.type === "success") {
-            const queryParams = new URLSearchParams(new URL(result.url).search);
-            const success = queryParams.get("success") === "true";
-            
-            if (success) {
-                const did = queryParams.get("did");
+          const queryParams = new URLSearchParams(new URL(result.url).search);
+          const success = queryParams.get("success") === "true";
 
-                setSession(did);
+          if (success) {
+            const did = queryParams.get("did");
 
-                router.replace('/(app)/(tabs)')
-            }
-            else {
-                setSession(null);
-            }
+            setDid(did);
+
+            await getProfile();
+
+            router.replace("/(app)/(tabs)");
+          } else {
+            setDid(null);
+          }
         }
       } catch (error) {
-        setSession(null);
+        setDid(null);
         console.log(error);
       }
     },
-    [mutateAsync]
+    [login]
   );
 
-  const signOut = useCallback(() => {
-    setSession(null);
+  const signOut = useCallback(async () => {
+    setDid(null);
+    router.replace("/sign-in");
+
+    await logout();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (!isLoading && did) {
+        try {
+          await getProfile();
+
+          router.replace("/(app)/(tabs)");
+        } catch (error) {
+          await signOut();
+        }
+      }
+    })();
+  }, [isLoading]);
 
   return (
     <AuthContext.Provider
       value={{
         signIn,
         signOut,
-        session,
+        did,
         isLoading,
+        profile: profile ?? null,
       }}
     >
       {children}

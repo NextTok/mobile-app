@@ -2,11 +2,10 @@ import { useAuth } from "@app/providers/AuthProvider";
 import { Redirect, Stack, useSegments } from "expo-router";
 
 export default function AppLayout() {
-  const { session } = useAuth();
+  const { did } = useAuth();
   const segments = useSegments();
 
-  console.log("session", session);
-  if (!session) {
+  if (!did) {
     return (
       <Redirect
         href={{
