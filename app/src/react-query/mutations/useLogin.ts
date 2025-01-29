@@ -2,7 +2,7 @@ import env from "@app/env";
 import { useMutation } from "@tanstack/react-query";
 
 export async function login(body: { handle: string }) {
-  const response = await fetch(new URL("login", env.APP_SERVER_URL), {
+  const response = await fetch(new URL("oauth/login", env.APP_SERVER_URL), {
     method: "POST",
     body: JSON.stringify(body),
     headers: {

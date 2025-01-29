@@ -10,7 +10,7 @@ import {
 import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
 import { useLogout } from "@app/react-query/mutations/useLogout";
-import { useProfile } from "@app/react-query/queries/useProfile";
+import { useUserInfo } from "@app/react-query/queries/useUserInfo";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -39,7 +39,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   const { mutateAsync: login } = useLogin();
   const { mutateAsync: logout } = useLogout();
-  const { refetch: getProfile, data: profile } = useProfile();
+  const { refetch: getProfile, data: profile } = useUserInfo();
 
   const signIn = useCallback(
     async (handle: string) => {

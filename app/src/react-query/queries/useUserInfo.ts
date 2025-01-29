@@ -2,8 +2,8 @@ import env from "@app/env";
 import { authenticatedFetch } from "@app/utils/authenticatedFetch";
 import { useQuery } from "@tanstack/react-query";
 
-export async function me() {
-  const response = await authenticatedFetch(new URL("me", env.APP_SERVER_URL), {
+export async function userInfo() {
+  const response = await authenticatedFetch(new URL("oauth/userinfo", env.APP_SERVER_URL), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -15,10 +15,10 @@ export async function me() {
   return result as {  };
 }
 
-export function useProfile() {
+export function useUserInfo() {
   return useQuery<{  }, Error, {}>({
-    queryFn: () => me(),
-    queryKey: ["me"],
+    queryFn: () => userInfo(),
+    queryKey: ["userinfo"],
     enabled: false
   });
 }
