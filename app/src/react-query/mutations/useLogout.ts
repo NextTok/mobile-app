@@ -1,15 +1,8 @@
-import env from "@app/env";
+import { niknakApi } from "@app/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export async function logout() {
-  const response = await fetch(new URL("oauth/logout", env.APP_SERVER_URL), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  await response.json();
+  await niknakApi.authenticated.logout();
 
   return true;
 }

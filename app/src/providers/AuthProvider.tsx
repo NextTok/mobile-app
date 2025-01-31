@@ -11,6 +11,7 @@ import * as WebBrowser from "expo-web-browser";
 import { router } from "expo-router";
 import { useLogout } from "@app/react-query/mutations/useLogout";
 import { useUserInfo } from "@app/react-query/queries/useUserInfo";
+import { ProfileViewDetailed } from "@niknak/app-sdk";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -19,7 +20,7 @@ type AuthContextValue = {
   signOut: () => void;
   did?: string | null;
   isLoading: boolean;
-  profile: {} | null;
+  profile: ProfileViewDetailed | null;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -28,7 +29,7 @@ export function useAuth() {
   const value = useContext(AuthContext);
 
   if (!value) {
-    throw new Error("useSession must be wrapped in a <SessionProvider />");
+    throw new Error("useAuth must be wrapped in a <AuthProvider />");
   }
 
   return value;

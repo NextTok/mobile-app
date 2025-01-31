@@ -1,22 +1,15 @@
-import env from "@app/env";
-import { authenticatedFetch } from "@app/utils/authenticatedFetch";
+import { niknakApi } from "@app/api";
+import { ProfileViewDetailed } from "@niknak/app-sdk";
 import { useQuery } from "@tanstack/react-query";
 
 export async function userInfo() {
-  const response = await authenticatedFetch(new URL("oauth/userinfo", env.APP_SERVER_URL), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await niknakApi.authenticated.userinfo();
 
-  const result = await response.json();
-  
-  return result as {  };
+  return response.data
 }
 
 export function useUserInfo() {
-  return useQuery<{  }, Error, {}>({
+  return useQuery<ProfileViewDetailed, Error>({
     queryFn: () => userInfo(),
     queryKey: ["userinfo"],
     enabled: false
