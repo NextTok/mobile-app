@@ -35,6 +35,16 @@ export function useAuth() {
   return value;
 }
 
+export function useUser() {
+  const value = useContext(AuthContext);
+
+  if (!value || !value.profile) {
+    throw new Error("useAuth must be wrapped in a <AuthProvider />");
+  }
+
+  return value.profile
+}
+
 export function AuthProvider({ children }: PropsWithChildren) {
   const [[isLoading, did], setDid] = useStorageState("did");
 
@@ -59,8 +69,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
             setDid(did);
 
             await getProfile();
-
-            router.replace("/(app)/(tabs)");
           } else {
             setDid(null);
           }
@@ -86,7 +94,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
         try {
           await getProfile();
 
-          router.replace("/(app)/(tabs)");
         } catch (error) {
           await signOut();
         }
@@ -94,6 +101,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
     })();
   }, [isLoading]);
 
+  useEffect(() => {
+    if (profile && did) {
+      router.replace("/(app)/(tabs)");
+    }
+  }, [profile, did])
+  
   return (
     <AuthContext.Provider
       value={{

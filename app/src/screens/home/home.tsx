@@ -1,6 +1,7 @@
 import { VideoFeed } from "@app/components/data/VideoFeed";
 import { IconShadow } from "@app/components/helpers/IconShadow";
 import Flexbox from "@app/components/layout/Flexbox";
+import { useUser } from "@app/providers/AuthProvider";
 import { theme } from "@app/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -18,6 +19,10 @@ export function HomeScreen() {
   const [dimensions, setDimensions] = useState(null);
   const insets = useSafeAreaInsets();
 
+  const user = useUser();
+
+  console.log(user);
+  
   return (
     <Flexbox flex={1} style={{ position: "relative" }}>
       <VideoFeed videos={videos} />
