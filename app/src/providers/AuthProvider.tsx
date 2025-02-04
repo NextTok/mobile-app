@@ -46,7 +46,8 @@ export function useUser() {
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const [[isLoading, did], setDid] = useStorageState("did");
+  const [[isLoadingDid, did], setDid] = useStorageState("did");
+  const [[isLoadingHandle], setHandle] = useStorageState("handle");
 
   const { mutateAsync: login } = useLogin();
   const { mutateAsync: logout } = useLogout();
@@ -55,6 +56,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const signIn = useCallback(
     async (handle: string) => {
       try {
+        setHandle(handle);
+
         const { url } = await login({ handle });
 
         const result = await WebBrowser.openAuthSessionAsync(url);
@@ -90,7 +93,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     (async () => {
-      if (!isLoading && did) {
+      if (!isLoadingDid && did) {
         try {
           await getProfile();
 
@@ -99,21 +102,23 @@ export function AuthProvider({ children }: PropsWithChildren) {
         }
       }
     })();
-  }, [isLoading]);
+  }, [isLoadingDid]);
 
   useEffect(() => {
     if (profile && did) {
+      setHandle(profile.handle);
+
       router.replace("/(app)/(tabs)");
     }
   }, [profile, did])
-  
+
   return (
     <AuthContext.Provider
       value={{
         signIn,
         signOut,
         did,
-        isLoading,
+        isLoading: isLoadingDid || isLoadingHandle,
         profile: profile ?? null,
       }}
     >
